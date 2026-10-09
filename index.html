@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#146c43">
+<meta name="description" content="Shaan Kirana Store digital customer ledger and udhaar khata.">
+<link rel="manifest" href="manifest.json">
+<title>Shaan Kirana Store — Digital Khata</title>
+<style>
+:root{--green:#146c43;--green2:#e8f5ed;--bg:#f4f7f5;--ink:#17231b;--muted:#647168;--line:#dce5de;--red:#b42318;--amber:#a15c00}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 14px;font-weight:650}button:disabled{opacity:.5}
+.top{background:var(--green);color:white;padding:18px 16px 22px;border-radius:0 0 22px 22px;box-shadow:0 4px 14px #1234}.topline{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:13px;background:#ffffff24;display:grid;place-items:center;font-size:24px}.top h1{font-size:19px;margin:0}.top p{margin:4px 0 0;color:#e0f3e7;font-size:13px}.wrap{max-width:760px;margin:auto;padding:14px 14px 90px}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:-3px}.stat{background:white;border:1px solid var(--line);padding:15px;border-radius:16px;box-shadow:0 2px 8px #18321a08}.stat small{color:var(--muted);display:block;font-size:12px}.stat strong{display:block;font-size:21px;margin-top:5px;overflow-wrap:anywhere}.stat.due strong{color:var(--amber)}.stat.advance strong{color:var(--green)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}.primary{background:var(--green);color:white}.secondary{background:white;border:1px solid var(--line);color:var(--ink)}.danger{background:#fff0ef;color:var(--red)}.section{background:white;border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}.section h2{font-size:16px;margin:0 0 12px}.search{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:10px}.customer{display:flex;align-items:center;gap:11px;padding:12px 2px;border-bottom:1px solid #edf1ee;cursor:pointer}.customer:last-child{border-bottom:0}.avatar{width:42px;height:42px;border-radius:50%;background:var(--green2);color:var(--green);display:grid;place-items:center;font-weight:800;flex-shrink:0}.grow{flex:1;min-width:0}.grow strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sub{font-size:12px;color:var(--muted);margin-top:3px}.amount{font-weight:750;text-align:right;white-space:nowrap}.due-text{color:var(--amber)}.advance-text{color:var(--green)}.empty{padding:22px;text-align:center;color:var(--muted);font-size:14px}.hidden{display:none!important}.back{background:white;border:1px solid var(--line);margin-bottom:10px}.detailhead{display:flex;gap:12px;align-items:center}.detailhead h2{margin:0;font-size:19px}.balancebox{background:var(--green2);border-radius:14px;padding:14px;margin:14px 0}.balancebox small{color:var(--muted)}.balancebox strong{display:block;font-size:25px;margin-top:4px}.formgrid{display:grid;gap:10px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;background:white}.field textarea{resize:vertical}.twobtn{display:grid;grid-template-columns:1fr 1fr;gap:8px}.debit{background:#fff1d8;color:#874800}.credit{background:#e7f6ec;color:#12663d}.entry{padding:12px 0;border-bottom:1px solid #edf1ee;display:flex;gap:10px;align-items:flex-start}.entry:last-child{border-bottom:0}.pill{font-size:11px;padding:4px 8px;border-radius:20px;font-weight:750;display:inline-block}.pill.debit{background:#fff1d8}.pill.credit{background:#e7f6ec}.entry .grow p{margin:5px 0 0;font-size:12px;color:var(--muted)}.entryactions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.mini{padding:7px 9px;font-size:12px;border-radius:9px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:18px 0}.nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffef;backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:10px}.nav button{max-width:370px;width:100%}
+dialog{border:0;border-radius:20px;padding:0;width:min(92vw,460px);box-shadow:0 20px 70px #0004}dialog::backdrop{background:#10201888}.modal{padding:18px}.modal h2{margin:0 0 15px}.modalfoot{display:flex;gap:8px;margin-top:14px}.modalfoot button{flex:1}
+.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:#17231b;color:white;border-radius:12px;padding:11px 15px;z-index:5;max-width:90%;font-size:13px}
+@media(min-width:600px){.wrap{padding-top:20px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.actions{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topline"><div class="logo">🛒</div><div><h1>Shaan Kirana Store</h1><p>Digital Udhaar Khata · डिजिटल उधार खाता</p></div></div></header>
+<main class="wrap">
+  <section id="dashboard">
+    <div class="stats">
+      <div class="stat"><small>Total Customers / ग्राहक</small><strong id="statCustomers">0</strong></div>
+      <div class="stat due"><small>Total Udhaar Due / बाकी</small><strong id="statDue">₹0</strong></div>
+      <div class="stat advance"><small>Advance / जमा</small><strong id="statAdvance">₹0</strong></div>
+      <div class="stat"><small>Today's Entries / आज</small><strong id="statToday">0</strong></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="addCustomerBtn">＋ Add Customer</button>
+      <button class="secondary" id="exportBtn">⇩ Export CSV</button>
+      <button class="secondary" id="backupBtn">Backup Data</button>
+      <button class="secondary" id="restoreBtn">Restore Backup</button>
+    </div>
+    <section class="section">
+      <h2>Customers / ग्राहक</h2>
+      <input id="search" class="search" placeholder="Search name or phone / खोजें…" autocomplete="off">
+      <div id="customerList"></div>
+    </section>
+    <div class="footer">Data is saved on this device/browser. Export a backup regularly.</div>
+  </section>
+
+  <section id="customerPage" class="hidden">
+    <button class="back" id="backBtn">← Back to customers</button>
+    <section class="section">
+      <div class="detailhead"><div class="avatar" id="detailAvatar">S</div><div class="grow"><h2 id="detailName">Customer</h2><div class="sub" id="detailPhone"></div></div><button class="secondary mini" id="editCustomerBtn">Edit</button></div>
+      <div class="balancebox"><small id="balanceLabel">Remaining udhaar / बाकी उधार</small><strong id="detailBalance">₹0</strong><div class="sub" id="detailBalanceHint"></div></div>
+      <div class="twobtn"><button class="debit" id="debitBtn">＋ Debit / Udhaar</button><button class="credit" id="creditBtn">－ Credit / Payment</button></div>
+      <button class="primary" style="width:100%;margin-top:9px" id="whatsappSummaryBtn">WhatsApp Khata Statement</button>
+    </section>
+    <section class="section"><h2>Transaction History / सभी एंट्री</h2><div id="entryList"></div></section>
+  </section>
+</main>
+<div class="nav"><button class="primary" id="homeBtn">⌂ Dashboard / मुख्य पेज</button></div>
+<dialog id="customerDialog"><form method="dialog" class="modal" id="customerForm"><h2 id="customerDialogTitle">Add Customer</h2><div class="formgrid">
+<div class="field"><label for="custName">Customer name / ग्राहक का नाम *</label><input id="custName" required maxlength="80" placeholder="e.g. Rahul Kumar"></div>
+<div class="field"><label for="custPhone">WhatsApp phone / मोबाइल नंबर *</label><input id="custPhone" required inputmode="tel" maxlength="20" placeholder="10 digit number or +91…"></div>
+<div class="field"><label for="custNote">Address / Note (optional)</label><input id="custNote" maxlength="120" placeholder="Optional"></div>
+</div><div class="modalfoot"><button type="button" class="secondary" data-close="customerDialog">Cancel</button><button type="submit" class="primary">Save Customer</button></div></form></dialog>
+<dialog id="entryDialog"><form method="dialog" class="modal" id="entryForm"><h2 id="entryDialogTitle">New Entry</h2><div class="formgrid">
+<div class="field"><label>Entry type</label><select id="entryType"><option value="DEBIT">Debit — Udhaar / Samaan diya</option><option value="CREDIT">Credit — Payment received</option></select></div>
+<div class="field"><label for="entryAmount">Amount (₹) *</label><input id="entryAmount" required type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00"></div>
+<div class="field"><label for="entryNote">Details (optional)</label><input id="entryNote" maxlength="140" placeholder="Rice, oil, payment etc."></div>
+<div class="field"><label for="entryDate">Date</label><input id="entryDate" type="date" required></div>
+</div><p class="sub">Save ke baad WhatsApp khulne ka option milega. Message bhejne ke liye WhatsApp mein Send dabana hoga.</p><div class="modalfoot"><button type="button" class="secondary" data-close="entryDialog">Cancel</button><button type="submit" class="primary">Save Entry</button></div></form></dialog>
+<dialog id="restoreDialog"><form method="dialog" class="modal" id="restoreForm"><h2>Restore backup</h2><p class="sub">Only restore a JSON backup created by this app. Existing data will be replaced.</p><div class="field"><label>Select backup JSON</label><input id="restoreFile" type="file" accept=".json,application/json" required></div><div class="modalfoot"><button type="button" class="secondary" data-close="restoreDialog">Cancel</button><button type="submit" class="primary">Restore</button></div></form></dialog>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+(()=> {
+const KEY='shaanKiranaStore.v1';
+let state={customers:[],entries:[]}, selectedId=null, editingCustomerId=null, toastTimer;
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format((Number(n)||0)/100);
+const paise=val=>Math.round(Number(val)*100);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&Array.isArray(x.customers)&&Array.isArray(x.entries))state=x;}catch(e){console.warn(e)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function bal(id){return state.entries.filter(e=>e.customerId===id).reduce((s,e)=>s+(e.type==='DEBIT'?e.amount:-e.amount),0)}
+function entriesFor(id){return state.entries.filter(e=>e.customerId===id).sort((a,b)=>(b.date+b.createdAt).localeCompare(a.date+a.createdAt))}
+function fmtDate(s){if(!s)return '';const [y,m,d]=s.split('-');return `${d}/${m}/${y}`}
+function toast(s){$('toast').textContent=s;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),2600)}
+function currentCustomer(){return state.customers.find(c=>c.id===selectedId)}
+function render(){
+ const due=state.customers.reduce((s,c)=>s+Math.max(0,bal(c.id)),0), adv=state.customers.reduce((s,c)=>s+Math.max(0,-bal(c.id)),0);
+ $('statCustomers').textContent=state.customers.length;$('statDue').textContent=money(due);$('statAdvance').textContent=money(adv);$('statToday').textContent=state.entries.filter(e=>e.date===today()).length;
+ const q=$('search').value.trim().toLowerCase();
+ const list=state.customers.filter(c=>(c.name+' '+c.phone).toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
+ $('customerList').innerHTML=list.length?list.map(c=>{const b=bal(c.id);return `<div class="customer" data-customer="${c.id}"><div class="avatar">${escapeHtml(c.name.trim().charAt(0).toUpperCase()||'?')}</div><div class="grow"><strong>${escapeHtml(c.name)}</strong><div class="sub">${escapeHtml(c.phone)}</div></div><div class="amount ${b>0?'due-text':b<0?'advance-text':''}">${money(Math.abs(b))}<div class="sub">${b>0?'Udhaar baki':b<0?'Advance':'Settled'}</div></div></div>`}).join(''):'<div class="empty">No customers yet. Tap “Add Customer” to begin.</div>';
+ if(selectedId){const c=currentCustomer();if(!c){selectedId=null;showDashboard();return}renderCustomer(c)}
+}
+function showDashboard(){$('dashboard').classList.remove('hidden');$('customerPage').classList.add('hidden')}
+function showCustomer(id){selectedId=id;$('dashboard').classList.add('hidden');$('customerPage').classList.remove('hidden');render()}
+function renderCustomer(c){
+ const b=bal(c.id);$('detailAvatar').textContent=c.name.charAt(0).toUpperCase();$('detailName').textContent=c.name;$('detailPhone').textContent=c.phone+(c.note?' · '+c.note:'');
+ $('balanceLabel').textContent=b>0?'Remaining udhaar / बाकी उधार':b<0?'Advance amount / जमा राशि':'Balance / हिसाब बराबर';
+ $('detailBalance').textContent=money(Math.abs(b));$('detailBalanceHint').textContent=b>0?'Customer owes this amount to the store.':b<0?'Store has this amount as customer advance.':'No dues outstanding.';
+ const es=entriesFor(c.id);$('entryList').innerHTML=es.length?es.map(e=>`<div class="entry"><div class="grow"><span class="pill ${e.type.toLowerCase()}">${e.type==='DEBIT'?'DEBIT · Udhaar':'CREDIT · Payment'}</span><p>${escapeHtml(fmtDate(e.date))}${e.note?' · '+escapeHtml(e.note):''}</p><div class="entryactions"><button class="secondary mini" data-wa="${e.id}">WhatsApp update</button></div></div><div class="amount ${e.type==='DEBIT'?'due-text':'advance-text'}">${e.type==='DEBIT'?'+':'−'}${money(e.amount)}</div></div>`).join(''):'<div class="empty">No entries yet. Add a debit or credit.</div>';
+}
+function normalizePhone(raw){let n=String(raw||'').replace(/[^\d+]/g,'');if(n.startsWith('+'))n=n.slice(1);else if(n.startsWith('0'))n=n.slice(1);else if(n.length===10)n='91'+n;return n.replace(/\D/g,'')}
+function waText(c,entry=null){const b=bal(c.id);let t=`Namaste ${c.name} ji,\n\nShaan Kirana Store khata update`;if(entry)t+=`\n${entry.type==='DEBIT'?'Udhaar added':'Payment received'}: ${money(entry.amount)}\nDate: ${fmtDate(entry.date)}${entry.note?'\nDetails: '+entry.note:''}`;t+=`\n\n${b>0?'Baki udhaar':b<0?'Advance jama':'Hisaab barabar'}: ${money(Math.abs(b))}\n\nDhanyavaad 🙏\nShaan Kirana Store`;return t}
+function openWA(c,e=null){const p=normalizePhone(c.phone);if(p.length<11||p.length>15){toast('Phone number check karo. Country code ke saath number chahiye.');return}window.open('https://wa.me/'+p+'?text='+encodeURIComponent(waText(c,e)),'_blank','noopener')}
+$('addCustomerBtn').onclick=()=>{editingCustomerId=null;$('customerForm').reset();$('customerDialogTitle').textContent='Add Customer';$('customerDialog').showModal()};
+$('customerForm').onsubmit=e=>{e.preventDefault();const name=$('custName').value.trim(),phone=$('custPhone').value.trim();if(!name||!phone)return;const norm=normalizePhone(phone);if(norm.length<10||norm.length>15){toast('Please check phone number.');return}
+if(editingCustomerId){const c=state.customers.find(x=>x.id===editingCustomerId);if(c)Object.assign(c,{name,phone,note:$('custNote').value.trim()})}else state.customers.push({id:uid(),name,phone,note:$('custNote').value.trim(),createdAt:new Date().toISOString()});
+$('customerDialog').close();save();toast('Customer saved')}
+$('editCustomerBtn').onclick=()=>{const c=currentCustomer();if(!c)return;editingCustomerId=c.id;$('custName').value=c.name;$('custPhone').value=c.phone;$('custNote').value=c.note||'';$('customerDialogTitle').textContent='Edit Customer';$('customerDialog').showModal()};
+function newEntry(type){const c=currentCustomer();if(!c)return;$('entryForm').reset();$('entryType').value=type;$('entryDate').value=today();$('entryDialogTitle').textContent=type==='DEBIT'?'Debit — Udhaar / Samaan diya':'Credit — Payment received';$('entryDialog').showModal()}
+$('debitBtn').onclick=()=>newEntry('DEBIT');$('creditBtn').onclick=()=>newEntry('CREDIT');
+$('entryForm').onsubmit=e=>{e.preventDefault();const c=currentCustomer(),amount=paise($('entryAmount').value);if(!c||!Number.isFinite(amount)||amount<=0){toast('Amount sahi daalein.');return}const entry={id:uid(),customerId:c.id,type:$('entryType').value,amount,note:$('entryNote').value.trim(),date:$('entryDate').value||today(),createdAt:new Date().toISOString()};state.entries.push(entry);$('entryDialog').close();save();toast('Entry saved');setTimeout(()=>{if(confirm('Entry save ho gayi. Customer ko WhatsApp update bhejna hai?'))openWA(c,entry)},150)};
+$('whatsappSummaryBtn').onclick=()=>{const c=currentCustomer();if(c)openWA(c)};
+$('entryList').addEventListener('click',e=>{const b=e.target.closest('[data-wa]');if(!b)return;const c=currentCustomer(),entry=state.entries.find(x=>x.id===b.dataset.wa);if(c&&entry)openWA(c,entry)});
+$('customerList').addEventListener('click',e=>{const row=e.target.closest('[data-customer]');if(row)showCustomer(row.dataset.customer)});
+$('search').addEventListener('input',render);$('backBtn').onclick=()=>{selectedId=null;showDashboard();render()};$('homeBtn').onclick=()=>{selectedId=null;showDashboard();render()};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
+function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+$('backupBtn').onclick=()=>download('shaan-kirana-backup-'+today()+'.json',JSON.stringify({...state,backupCreatedAt:new Date().toISOString()},null,2),'application/json');
+$('restoreBtn').onclick=()=>{$('restoreFile').value='';$('restoreDialog').showModal()};
+$('restoreForm').onsubmit=e=>{e.preventDefault();const f=$('restoreFile').files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x.customers)||!Array.isArray(x.entries))throw Error();if(!confirm('Existing customer data replace karna hai?'))return;state={customers:x.customers,entries:x.entries};selectedId=null;save();showDashboard();$('restoreDialog').close();toast('Backup restored')}catch(err){toast('Invalid backup file')}};r.readAsText(f)};
+$('exportBtn').onclick=()=>{const rows=[['Customer','Phone','Type','Amount INR','Date','Details','Balance after entry INR']];for(const c of state.customers){let running=0;for(const e of state.entries.filter(x=>x.customerId===c.id).sort((a,b)=>(a.date+a.createdAt).localeCompare(b.date+b.createdAt))){running+=e.type==='DEBIT'?e.amount:-e.amount;rows.push([c.name,c.phone,e.type,(e.amount/100).toFixed(2),e.date,e.note,(running/100).toFixed(2)])}}const csv=rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');download('shaan-kirana-ledger-'+today()+'.csv','\ufeff'+csv,'text/csv;charset=utf-8')};
+load();render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
+</body></html>
